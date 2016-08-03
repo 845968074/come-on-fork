@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>barcodePage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<!--<form action="http://127.0.0.1:3000/barcode" method="get">-->
+<input type="text" id="barcode" name="barcode" placeholder="请输入邮编">
+<input type="submit" value="转码" id="button1">
+<!--<input type="text" value="">-->
+<div id="div1">
+</div>
+<!--</form>-->
+<script>
+    $(document).ready(function () {
+        $("#button1").click(function () {
+            $.ajax({type:"POST",url:"http://localhost:3000/barcode",async:true,data:"barcode="+$('#barcode').val(),
+                success:function (result) {
+                    $("#div1").html(result);
+                },
+                error:function (xhr) {
+                    alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                }})
+        })
+    })
+</script>
+
+</body>
+</html>
